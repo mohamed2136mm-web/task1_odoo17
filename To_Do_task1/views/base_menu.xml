@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem
+            id="todo_root_menu"
+            name="To_Do"
+    />
+    <menuitem
+            id="ToDo_menu"
+            name="ToDo"
+            parent="todo_root_menu"
+    />
+</odoo>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="All_tasks_tree" model="ir.ui.view">
+        <field name="name">All tasks tree</field>
+        <field name="model">todo.task</field>
+        <field name="arch" type="xml">
+            <tree class="header_custom">
+                <field name="name"/>
+                <field name="assign_to_ids"/>
+                <field name="description"/>
+                <field name="due_date"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+    <record id="All_tasks_form" model="ir.ui.view">
+        <field name="name">All tasks form</field>
+        <field name="model">todo.task</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <header>
+                        <button name="action_draft" type="object" class="btn-primary" string="Set To Draft" invisible="state == 'draft'"/>
+                        <button name="action_pending" type="object" class="btn-secondary" string="pending" invisible="state != 'draft'"/>
+                        <button name="action_sold" type="object" class="btn-success" string="sold" invisible="state != 'pending'"/>
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <div class="oe_titel">
+                        <lapel for="name"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="assign_to_ids"/>
+                            <field name="description"/>
+                        </group>
+                        <group>
+                            <field name="due_date"/>
+                            <field name="status"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="All_tasks_search" model="ir.ui.view">
+        <field name="name">All tasks search</field>
+        <field name="model">todo.task</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="assign_to_ids"/>
+            </search>
+        </field>
+    </record>
+    <record id="All_tasks_action" model="ir.actions.act_window">
+        <field name="name">All tasks</field>
+        <field name="res_model">todo.task</field>
+    </record>
+   <menuitem
+       id="All_tasks_menu_item"
+       name="All tasks"
+       parent="ToDo_menu"
+       action="All_tasks_action"
+       />
+</odoo>
